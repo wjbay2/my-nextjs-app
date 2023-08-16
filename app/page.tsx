@@ -3,6 +3,9 @@ import comingSoon from '@/images/coming_soon.png'
 
 export default function Home() {
 
+
+
+
   return (
     <><div className="relative overflow-hidden">
       <div className="bg-white pt-10 pb-14 sm:pt-16 lg:overflow-hidden lg:pt-24 lg:pb-24">
@@ -13,7 +16,6 @@ export default function Home() {
                 <h1 className="mt-4 text-4xl font-bold tracking-tight text-black sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"><span className="block text-pink-500">Introducing </span><span className="block text-black">Our Brandnew Website</span></h1>
                 <p className="mt-3 text-base text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">Coming soon</p>
                 <div className="mt-10 sm:mt-12">
-
                   <form className="sm:mx-auto sm:max-w-xl lg:mx-0" action="https://api.web3forms.com/submit">
                     <div className="sm:flex">
                       <div className="mt-3 sm:mt-0"><button type="submit" className="block w-full rounded-md bg-pink-500 py-3 px-4 font-medium text-white shadow hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-gray-900">Contact Us</button></div>
@@ -22,6 +24,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="mt-12 hidden lg:block"><img className="" src="https://user-images.githubusercontent.com/1884712/202186141-9f8a93e1-7743-459a-bc95-b1d826931624.png" alt="" /></div>
           </div>
         </div>
