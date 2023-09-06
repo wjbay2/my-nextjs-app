@@ -10,11 +10,13 @@ export default function Home() {
               <div className="mx-auto max-w-md px-4 text-center sm:max-w-2xl sm:px-6 lg:flex lg:items-center lg:px-0 lg:text-left">
                 <div className="lg:py-24">
                   <h1 className="mt-4 text-4xl font-bold tracking-tight text-black sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                    <span className="block text-pink-500">Dear </span>
-                    <span className="block text-black">My Wife Jasmine</span>
+                    <span className="block text-pink-500">
+                      Welcome to my Next.js
+                    </span>
+                    <span className="block text-black">Demo Website</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                    I love you
+                    Deployed on AWS Amplify
                   </p>
                   <div className="mt-10 sm:mt-12">
                     <div className="lg:flex">
@@ -22,11 +24,11 @@ export default function Home() {
                         <button
                           onClick={() => {
                             // eslint-disable-next-line no-alert
-                            alert('I love you too Mummy, from Xavier');
+                            alert('Thanks for visiting thsi demo website');
                           }}
                           className="block w-full rounded-md bg-pink-500 px-4 py-3 font-medium text-white shadow hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-gray-900"
                         >
-                          Please Click Me
+                          Contact US
                         </button>
                       </div>
                     </div>
