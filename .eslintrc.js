@@ -14,7 +14,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.eslint.json'],
+    // project: ['./tsconfig.eslint.json'],
     ecmaFeatures: {
       jsx: true,
     },
@@ -78,6 +78,8 @@ module.exports = {
       'error',
       {
         devDependencies: false,
+        optionalDependencies: false,
+        peerDependencies: false,
       },
     ],
     '@typescript-eslint/no-shadow': [
@@ -154,8 +156,8 @@ module.exports = {
       'error',
       {
         cssFiles: [],
-        config: './tailwind.config.js',
-        whitelist: ['reebelo-container', 'collapse-icon'],
+        config: './tailwind.config.ts',
+        whitelist: ['bay-container', 'text-main', 'shake-effect'],
       },
     ],
   },
