@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+@layer components {
+  .bay-container {
+      @apply mx-auto px-3;
+  }
+}
+
+@media (min-width: 576px) {
+  .bay-container {
+      max-width: 768px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bay-container {
+      max-width: 992px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bay-container {
+      max-width: 1200px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bay-container {
+      max-width: 1400px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .bay-container {
+      max-width: 1600px;
+  }
+}

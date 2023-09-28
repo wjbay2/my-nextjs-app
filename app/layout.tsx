@@ -1,5 +1,7 @@
-import './globals.css';
+import '@/css/global.scss';
+import '@/css/custom.scss';
 import type { Metadata } from 'next';
+import Nav from '@/components/Nav';
 
 export const metadata: Metadata = {
   title: 'My NextJS app',
@@ -13,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+      <body className="work-sans bg-white text-base leading-normal tracking-normal text-gray-600">
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
