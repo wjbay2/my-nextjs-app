@@ -36,7 +36,8 @@ export default function Pagination({
 
   console.log('pagesArray', pagesArray);
   const startCount = currentPage > 1 ? (currentPage - 1) * itemPerPage + 1 : 1;
-  const endtCount = currentPage * itemPerPage;
+  const endtCount =
+    currentPage === totalPages ? totalItems : currentPage * itemPerPage;
 
   return (
     <>
@@ -45,7 +46,7 @@ export default function Pagination({
         <div className="-mt-px flex w-0 flex-1">
           {currentPage > 1 && (
             <Link
-              href={`?page=${currentPage + 1}`}
+              href={`?page=${currentPage - 1}`}
               className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
             >
               <ArrowLongLeftIcon
