@@ -1,18 +1,40 @@
 import axios from 'axios';
 import Image from 'next/image';
-import { DigimonDetails } from './type';
+import { DigimonDetails, DigimonPageable } from './type';
+import Pagination from '@/components/Pagination';
 
-async function getListing() {
-  const res = await axios.get(
-    'https://digi-api.com/api/v1/digimon?&pageSize=50',
+type ApiReturnType = {
+  content: Array<DigimonDetails>;
+  pageable: DigimonPageable;
+};
+
+const ITEMS_PER_PAGE = 50;
+
+async function getListing(page: number): Promise<ApiReturnType> {
+  const pageQuery = page <= 1 ? `&page=${page}` : ``;
+  const res = await axios.get<ApiReturnType>(
+    `https://digi-api.com/api/v1/digimon?&pageSize=${ITEMS_PER_PAGE}${pageQuery}`,
   );
   const data = await res.data;
 
   return data;
 }
 
-export default async function Page() {
-  const data = await getListing();
+type PageSearchParams = {
+  page?: string;
+};
+
+type Props = {
+  params: object;
+  searchParams: PageSearchParams;
+};
+
+export default async function Page(props: Props) {
+  const { page } = props.searchParams;
+
+  console.log('params', props.searchParams);
+  const data = await getListing(Number(page));
+  const pageInfo = data.pageable;
 
   console.log('data', data);
 
@@ -38,6 +60,12 @@ export default async function Page() {
             </div>
           ))}
         </div>
+        <Pagination
+          totalPages={pageInfo.totalPages + 1}
+          currentPage={Number(page) || 1}
+          totalItems={pageInfo.totalElements}
+          itemPerPage={ITEMS_PER_PAGE}
+        />
       </div>
     </>
   );
