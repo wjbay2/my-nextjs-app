@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import Pagination from '@/components/Pagination';
 import { ApiReturnType, ITEMS_PER_PAGE } from './page';
 import { DigimonDetails } from './type';
@@ -25,16 +26,20 @@ export default function Content({
             className="group flex cursor-pointer flex-col items-center justify-start"
             key={mon.name}
           >
-            <div className="relative h-[150px] w-[150px] overflow-hidden">
-              <Image
-                src={mon.image}
-                alt={mon.name}
-                width={200}
-                height={200}
-                className="group-hover:animate-shake-effect absolute h-full w-full transform object-cover opacity-80 transition duration-500"
-              />
-            </div>
-            <div className="mt-1 text-sm font-bold">{mon.name}</div>
+            <Link href={`details/${mon.id}`}>
+              <div className="relative h-[150px] w-[150px] overflow-hidden">
+                <Image
+                  src={mon.image}
+                  alt={mon.name}
+                  width={200}
+                  height={200}
+                  className="group-hover:animate-shake-effect absolute h-full w-full transform object-cover opacity-80 transition duration-500"
+                />
+              </div>
+              <div className="mt-1 text-center text-sm font-bold">
+                {mon.name}
+              </div>
+            </Link>
           </div>
         ))}
       </div>
