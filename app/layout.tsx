@@ -2,10 +2,12 @@ import '@/css/global.scss';
 import '@/css/custom.scss';
 import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
+import Favicon from './favicon.ico';
 
 export const metadata: Metadata = {
-  title: 'My NextJS app',
-  description: 'Hello this is Bay',
+  title: 'My Digimon Portal',
+  description: 'This is a side project.',
+  icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
 export default function RootLayout({

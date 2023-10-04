@@ -157,7 +157,12 @@ module.exports = {
       {
         cssFiles: [],
         config: './tailwind.config.ts',
-        whitelist: ['bay-container', 'text-main', 'animate-shake-effect'],
+        whitelist: [
+          'bay-container',
+          'text-main',
+          'animate-shake-effect',
+          'bg-main',
+        ],
       },
     ],
   },

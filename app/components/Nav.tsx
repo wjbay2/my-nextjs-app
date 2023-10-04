@@ -9,71 +9,74 @@ import logo from '@/images/logo.png';
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  console.log('menuOpen', menuOpen);
-
   return (
-    <nav id="header" className="sticky top-0 z-40 w-full bg-white py-1 shadow">
-      <div className="bay-container mx-auto mt-0 flex w-full flex-wrap items-center justify-between px-6 py-3">
+    <nav
+      id="header"
+      className="bg-main sticky top-0 z-40 w-full py-1 shadow sm:bg-white"
+    >
+      <div className="bay-container mx-auto mt-0 flex w-full flex-row flex-wrap items-center justify-between px-4 py-2 sm:flex-row sm:px-6 sm:py-3">
         <div
-          className="block cursor-pointer md:hidden"
+          className="sm:text-main order-3 mt-2 block cursor-pointer text-white md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
           <svg
-            className="fill-current text-gray-900"
+            className="fill-current"
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="20"
             viewBox="0 0 20 20"
           >
-            <title>menu</title>
+            <title>Menu</title>
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
           </svg>
         </div>
 
         <div
           className={cn(
-            'order-3 w-full md:order-2 md:flex md:w-auto md:items-center',
+            'order-4 w-full md:order-2 md:flex md:w-auto md:items-center sm:border-t-0 border-t sm:mt-0 mt-3',
             {
-              hidden: menuOpen,
+              hidden: !menuOpen,
             },
           )}
         >
           <nav>
-            <ul className="items-center justify-between pt-4 text-base text-gray-700 md:flex md:pt-0">
+            <ul className="sm:text-main items-center justify-between pt-2 text-base text-white sm:pt-4 md:flex md:pt-0">
               <li>
                 <Link
                   href="listing"
-                  className="inline-block px-4 py-2 no-underline hover:text-black hover:underline"
+                  className="inline-block px-0 py-2 no-underline hover:underline sm:px-4"
                 >
                   Listing
                 </Link>
               </li>
               <li>
-                <a
-                  className="inline-block px-4 py-2 no-underline hover:text-black hover:underline"
-                  href="#"
+                <Link
+                  href="/#about"
+                  className="inline-block px-0 py-2 no-underline hover:underline sm:px-4"
                 >
                   About Page
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <div className="order-1 md:order-1">
+        <div className="order-2 md:order-1">
           <a
             className="flex flex-col items-center text-xl font-bold tracking-wide text-gray-800 no-underline hover:no-underline"
             href="/"
           >
-            <Image src={logo} alt="My Digimon Portal" width={88} />
-            <h3 className="text-main mt-1 text-sm font-bold uppercase">
+            <div className="w-[68px] sm:w-[88px]">
+              <Image src={logo} alt="My Digimon Portal" className="w-full" />
+            </div>
+            <h3 className="sm:text-main mt-1 text-sm font-bold uppercase text-white">
               My Digimon Portal
             </h3>
           </a>
         </div>
 
         <div
-          className="order-2 hidden items-center md:order-3"
+          className="order-1 hidden items-center md:order-3"
           id="nav-content"
         >
           <a className="inline-block no-underline hover:text-black" href="#">
