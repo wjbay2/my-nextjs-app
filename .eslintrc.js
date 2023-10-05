@@ -162,6 +162,7 @@ module.exports = {
           'text-main',
           'animate-shake-effect',
           'bg-main',
+          'border-main',
         ],
       },
     ],

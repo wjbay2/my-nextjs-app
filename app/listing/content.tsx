@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ReactPaginate from 'react-paginate';
 import { useRouter } from 'next/navigation';
-import Pagination from '@/components/Pagination';
 import { ApiReturnType, ITEMS_PER_PAGE } from './page';
 import { DigimonDetails } from './type';
 
@@ -18,13 +17,21 @@ export default function Content({
   const pageInfo = data.pageable;
   const router = useRouter();
 
-  const handlePageClick = (event) => {
+  const handlePageClick = (event: { selected: number }) => {
     router.push(`?page=${event.selected + 1}`);
   };
+  const currentPage = Number(page) <= 0 ? 1 : Number(page) - 1;
+  const { totalPages, totalElements: totalItems } = pageInfo;
+  const startCount =
+    currentPage > 1 ? (currentPage - 1) * ITEMS_PER_PAGE + 1 : 1;
+  const endtCount =
+    currentPage === totalPages ? totalItems + 2 : currentPage * ITEMS_PER_PAGE;
+  const commonPageCss =
+    'inline-flex items-center border-t-2 border-transparent md:pt-4 md:pb-4 py-1.5 px-3 xs:py-3 text-sm font-medium text-gray-500 hover:md:border-gray-300 hover:md:text-gray-700 hover:md:text-main group';
 
   return (
     <div className="bay-container my-8 sm:my-12">
-      <h3 className="text-main mb-6 w-full text-center text-lg font-bold uppercase">
+      <h3 className="text-main xs:text-lg mb-6 w-full text-center text-base font-bold uppercase">
         Listing
       </h3>
       <div className="xxs:grid-cols-3 grid grid-cols-2 gap-x-2 gap-y-5 sm:grid-cols-4 sm:gap-x-4 sm:gap-y-8 lg:grid-cols-5">
@@ -34,7 +41,7 @@ export default function Content({
             className="group flex cursor-pointer flex-col items-center justify-start"
             key={mon.name}
           >
-            <div className="xs:h-[120px] xs:w-[120px] relative h-auto w-full overflow-hidden sm:h-[150px] sm:w-[150px]">
+            <div className="xs:h-[120px] xs:w-[120px] xxs:w-full relative h-auto w-4/5 overflow-hidden sm:h-[150px] sm:w-[150px]">
               <Image
                 src={mon.image}
                 alt={mon.name}
@@ -49,27 +56,23 @@ export default function Content({
           </Link>
         ))}
       </div>
-      {/* <Pagination
-        totalPages={pageInfo.totalPages + 2}
-        currentPage={Number(page) || 1}
-        totalItems={pageInfo.totalElements}
-        itemPerPage={ITEMS_PER_PAGE}
-      /> */}
+      <div className="mt-8 w-full text-center text-sm">{`Showing ${startCount} to ${endtCount} out of total ${totalItems} digimons`}</div>
       <ReactPaginate
         breakLabel="..."
+        initialPage={Number(page) <= 0 ? 1 : Number(page) - 1}
         breakLinkClassName="inline-flex px-4 pt-4"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         pageCount={pageInfo.totalPages + 2}
         renderOnZeroPageCount={null}
-        className="mt-10 flex flex-wrap items-start justify-between border-t border-gray-200 px-4 sm:px-0"
+        className="mt-10 flex flex-wrap items-start justify-center border-t-0 border-gray-200 px-4 sm:px-0 md:justify-between md:border-t"
         containerClassName="hidden md:-mt-px md:flex"
-        pageLinkClassName="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-        activeLinkClassName="border-indigo-500 text-indigo-600"
-        previousClassName="mr-auto"
-        previousLinkClassName="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-        nextClassName="ml-auto"
-        nextLinkClassName="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+        pageLinkClassName="inline-flex items-center border-t-2 border-transparent xs:text-sm text-xs xs:px-3 md:px-4 xs:py-3 py-2 px-3 md:pt-4 md:pb-0 text-sm font-medium text-gray-500 hover:md:border-gray-300 hover:md:text-gray-700 hover:text-main hover:md:bg-transparent hover:bg-[#368bc13b]"
+        activeLinkClassName="md:border-indigo-500 !bg-main md:!text-indigo-600 md:!bg-white !text-white"
+        previousClassName="md:mr-auto"
+        previousLinkClassName={commonPageCss}
+        nextClassName="md:ml-auto"
+        nextLinkClassName={commonPageCss}
         previousLabel={
           <>
             <svg
@@ -77,7 +80,7 @@ export default function Content({
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
-              className="mr-3 h-5 w-5 text-gray-400"
+              className="group-hover:text-main xs:mr-3 mr-1 h-5 w-5 text-gray-400 group-hover:md:text-gray-700"
             >
               <path
                 fill-rule="evenodd"
@@ -96,7 +99,7 @@ export default function Content({
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
-              className="ml-3 h-5 w-5 text-gray-400"
+              className="group-hover:text-main xs:ml-3 ml-1 h-5 w-5 text-gray-400 group-hover:md:text-gray-700"
             >
               <path
                 fill-rule="evenodd"

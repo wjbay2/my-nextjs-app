@@ -1,6 +1,14 @@
 import axios from 'axios';
 import Content from './content';
 
+export type EvolutionDetails = Array<{
+  id: number;
+  digimon: string;
+  condition: string;
+  image: string;
+  url: string;
+}>;
+
 export type ApiReturnType = {
   id: number;
   name: string;
@@ -21,20 +29,8 @@ export type ApiReturnType = {
     translation: string;
     description: string;
   }>;
-  priorEvolutions: Array<{
-    id: number;
-    digimon: string;
-    condition: string;
-    image: string;
-    url: string;
-  }>;
-  nextEvolutions: Array<{
-    id: number;
-    digimon: string;
-    condition: string;
-    image: string;
-    url: string;
-  }>;
+  priorEvolutions: EvolutionDetails;
+  nextEvolutions: EvolutionDetails;
 };
 
 export const ITEMS_PER_PAGE = 50;
